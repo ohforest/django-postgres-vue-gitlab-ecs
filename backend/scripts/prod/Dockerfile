@@ -1,4 +1,4 @@
-FROM python:3.8 as production
+FROM python:3.9 as production
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 RUN mkdir /code

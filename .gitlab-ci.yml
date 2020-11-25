@@ -15,7 +15,7 @@ include:
   - local: /gitlab-ci/aws/app.yml
 
 .Pytest:
-  image: python:3.8
+  image: python:3.9
   stage: test
   services:
     - postgres:11.5
