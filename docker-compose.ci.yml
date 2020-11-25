@@ -5,7 +5,7 @@ services:
 services:
   postgres:
     container_name: postgres
-    image: postgres:11.5
+    image: postgres:11.10
     networks:
       - main
     ports:
