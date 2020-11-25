@@ -39,7 +39,7 @@ include:
   coverage: "/TOTAL.+ ([0-9]{1,3}%)/"
 
 .Jest:
-  image: node:12.19.0
+  image: node:12.20.0
   stage: test
   before_script:
     - cd quasar
