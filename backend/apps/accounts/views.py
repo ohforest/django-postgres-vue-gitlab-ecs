@@ -132,9 +132,8 @@ def exchange_token(request, backend):
 
         if user:
             if user.is_active:
-                tokens = get_tokens_for_user(user)
-                # token, _ = Token.objects.get_or_create(user=user)
-                return Response(tokens)
+                login(request, user)
+                return JsonResponse({"detail": "Success"})
             else:
                 # user is not active; at some point they deleted their account,
                 # or were banned by a superuser. They can't just log

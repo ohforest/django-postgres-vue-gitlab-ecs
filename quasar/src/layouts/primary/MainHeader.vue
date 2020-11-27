@@ -32,27 +32,6 @@
       </span>
       <q-select dark dense color="white" v-model="lang" :options="langs" />
 
-      <!-- <q-btn
-        id="login"
-        :ripple="false"
-        color="white"
-        text-color="primary"
-        label="Login"
-        v-if="!$store.getters['gqljwt/isAuthenticated']"
-        no-caps
-        @click="$router.push('/login-gql')"
-      />
-      <q-btn
-        id="logout"
-        :ripple="false"
-        color="white"
-        text-color="primary"
-        label="Logout"
-        v-if="$store.getters['gqljwt/isAuthenticated']"
-        no-caps
-        @click="logout"
-      /> -->
-
       <q-btn
         id="login"
         :ripple="false"
@@ -106,8 +85,7 @@ export default {
       this.lang = lang;
     },
     logout() {
-      this.$store.dispatch("AUTH_LOGOUT").then(() => this.$router.push("/"));
-      this.$router.go();
+      this.$store.dispatch("AUTH_LOGOUT");
     },
     toggleLeftDrawer() {
       this.$store.commit("toggleLeftDrawer");
@@ -119,9 +97,6 @@ export default {
   watch: {
     lang(lang) {
       this.$i18n.locale = lang.value;
-      // import(`quasar/i18n/${lang}`).then(language => {
-      //   this.$q.lang.set(language.default)
-      // })
     },
   },
 };

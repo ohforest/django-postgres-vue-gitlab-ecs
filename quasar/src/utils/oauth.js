@@ -7,7 +7,7 @@ const oauth = {
       client_id: process.env.GITHUB_KEY,
       redirect_uri: `${url}/auth/github/callback`,
       login: "",
-      scope: "user",
+      scope: "user:email",
       state: "eworifjeovivoiej",
     },
   },

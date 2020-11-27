@@ -62,10 +62,6 @@ const routes = [
         component: () => import("pages/Services/index.vue"),
       },
       {
-        path: "debug/environment-variables",
-        component: () => import("pages/Environment.vue"),
-      },
-      {
         path: "examples/",
         // beforeEnter: ifAuthenticated,
         component: () => import("pages/Examples/index.vue"),

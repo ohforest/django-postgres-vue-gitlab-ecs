@@ -29,7 +29,6 @@ const actions = {
       Vue.prototype.$axios
         .post("/api/login/", user)
         .then((resp) => {
-          localStorage.setItem("user-token", "success");
           commit(AUTH_SUCCESS, resp);
           dispatch(USER_REQUEST);
           resolve(resp);
@@ -40,32 +39,30 @@ const actions = {
           reject(err);
         });
     }),
-  [AUTH_LOGOUT]: ({ commit, dispatch }) =>
-    new Promise((resolve, reject) => {
+  [AUTH_LOGOUT]: ({ commit, dispatch, state }) => {
+    Vue.prototype.$axios.post("/api/logout/").then(() => {
       commit(AUTH_LOGOUT);
-      localStorage.removeItem("user-token");
-      resolve();
-    }),
+    });
+  },
 };
 
 const mutations = {
-  [AUTH_REQUEST]: (requestState) => {
-    const s = requestState;
-    s.status = "loading";
+  [AUTH_REQUEST]: (state) => {
+    state.status = "loading";
   },
-  [AUTH_SUCCESS]: (s, resp) => {
-    s.status = "success";
-    s.token = "success";
-    s.hasLoadedOnce = true;
+  [AUTH_SUCCESS]: (state, payload) => {
+    localStorage.setItem("user-token", "success");
+    state.status = "success";
+    state.token = "success";
+    state.hasLoadedOnce = true;
   },
-  [AUTH_ERROR]: (errorState) => {
-    const s = errorState;
-    s.status = "error";
-    s.hasLoadedOnce = true;
+  [AUTH_ERROR]: (state) => {
+    state.status = "error";
+    state.hasLoadedOnce = true;
   },
-  [AUTH_LOGOUT]: (logoutState) => {
-    const s = logoutState;
-    s.token = "";
+  [AUTH_LOGOUT]: (state) => {
+    localStorage.removeItem("user-token");
+    state.token = "";
   },
 };
 

@@ -32,10 +32,6 @@ const leftDrawer = {
       main: "Celery",
       sub: "Example Celery Tasks",
     },
-    environment: {
-      main: "Environment",
-      sub: "Environment variables",
-    },
   },
 };
 

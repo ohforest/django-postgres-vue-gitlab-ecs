@@ -8,16 +8,17 @@
 export default {
   methods: {
     handleOauthCallback() {
+      const vm = this;
       const provider = this.$route.params.provider;
       this.$axios
         .post(`/api/social/${provider}/`, { code: this.$route.query.code })
         .then((resp) => {
-          localStorage.setItem("user-token", "success");
-          window.location.href = "/";
+          vm.$store.commit("AUTH_SUCCESS");
+          vm.$router.push("/");
         });
     },
   },
-  created() {
+  mounted() {
     this.handleOauthCallback();
   },
   computed: {
