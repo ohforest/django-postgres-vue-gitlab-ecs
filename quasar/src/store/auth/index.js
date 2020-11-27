@@ -11,7 +11,7 @@ import { USER_REQUEST } from "../user";
 import gqljwt from "./gqljwt";
 
 const state = {
-  token: localStorage.getItem("user-token") || "",
+  token: localStorage.getItem("authenticated") || "",
   status: "",
   hasLoadedOnce: false,
 };
@@ -35,7 +35,7 @@ const actions = {
         })
         .catch((err) => {
           commit(AUTH_ERROR, err);
-          localStorage.removeItem("user-token");
+          localStorage.removeItem("authenticated");
           reject(err);
         });
     }),
@@ -51,7 +51,7 @@ const mutations = {
     state.status = "loading";
   },
   [AUTH_SUCCESS]: (state, payload) => {
-    localStorage.setItem("user-token", "success");
+    localStorage.setItem("authenticated", "success");
     state.status = "success";
     state.token = "success";
     state.hasLoadedOnce = true;
@@ -61,7 +61,7 @@ const mutations = {
     state.hasLoadedOnce = true;
   },
   [AUTH_LOGOUT]: (state) => {
-    localStorage.removeItem("user-token");
+    localStorage.removeItem("authenticated");
     state.token = "";
   },
 };

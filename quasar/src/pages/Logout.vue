@@ -10,7 +10,7 @@ export default {
     logout() {
       const vm = this;
       this.$axios.post("/api/logout/").then(() => {
-        localStorage.removeItem("user-token");
+        localStorage.removeItem("authenticated");
         vm.$router.push("/");
         // window.location.reload();
       });
