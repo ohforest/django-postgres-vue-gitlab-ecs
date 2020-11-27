@@ -11,14 +11,14 @@ import { USER_REQUEST } from "../user";
 import gqljwt from "./gqljwt";
 
 const state = {
-  token: localStorage.getItem("authenticated") || "",
+  authenticated: localStorage.getItem("authenticated") || "",
   status: "",
   hasLoadedOnce: false,
 };
 
 const getters = {
-  getToken: (s) => s.token,
-  isAuthenticated: (s) => !!s.token,
+  getAuthenticated: (s) => s.authenticated,
+  isAuthenticated: (s) => !!s.authenticated,
   authStatus: (s) => s.status,
 };
 
@@ -53,7 +53,7 @@ const mutations = {
   [AUTH_SUCCESS]: (state, payload) => {
     localStorage.setItem("authenticated", "success");
     state.status = "success";
-    state.token = "success";
+    state.authenticated = "success";
     state.hasLoadedOnce = true;
   },
   [AUTH_ERROR]: (state) => {
@@ -62,7 +62,7 @@ const mutations = {
   },
   [AUTH_LOGOUT]: (state) => {
     localStorage.removeItem("authenticated");
-    state.token = "";
+    state.authenticated = "";
   },
 };
 

@@ -64,12 +64,6 @@
           :caption="$t('leftDrawer.examples.websockets.sub')"
         />
         <left-menu-link
-          :label="$t('leftDrawer.environment.main')"
-          to="/debug/environment-variables"
-          icon="offline_bolt"
-          :caption="$t('leftDrawer.environment.sub')"
-        />
-        <left-menu-link
           :label="$t('leftDrawer.celery.main')"
           to="/examples/celery"
           icon="local_florist"
